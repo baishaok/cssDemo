@@ -5,3 +5,4 @@ sdfsdf
 sdfsdf
 dev1
 echo 333;
+中文
