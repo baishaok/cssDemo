@@ -1,9 +1,0 @@
-3ikkk
-44
-555
-sdfsdf
-sdfsdf
-dev1
-echo 333;
-aaa;
-555
