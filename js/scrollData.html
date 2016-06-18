@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+    <script type="text/javascript" src="jquery-2.2.4.min.js"></script>
+	<script type="text/javascript">
+        /*document.onscroll = function (){
+            var h = window.innerHeight + document.body.scrollTop;
+            var sh = document.body.scrollHeight;
+            if(sh == h){
+                console.log(window.innerHeight);
+                console.log(document.body.scrollTop);//火狐下不生效
+                console.log(document.body.scrollHeight);
+                var main = document.getElementById('main');
+
+                var lis = document.querySelector('#lis').innerHTML;
+                var mainHtml = main.innerHTML;
+                var content = mainHtml+lis;
+                main.innerHTML=content;
+                console.log(main);
+                
+            }
+        }*/
+        $(function(){
+            $(document).scroll(function(){
+                var wh = $(window).innerHeight();
+                //console.log(document.body.scrollHeight);
+                //滚动条的高度即为文档的高度
+                var sh = $(document).height();
+                var stop = $(document).scrollTop();
+                var h = wh + stop;
+                if(sh == h){
+                    var lis = $('#lis').html();
+                    $('#main').append(lis);
+                    console.log(sh);
+                    console.log(wh+'+'+stop);
+                }
+            });
+            
+        })
+    </script>
+</head>
+<body>
+    <div style="height:400px;">
+        <ul id="lis">
+            <li>22222</li>
+            <li>22222</li>
+            <li>22222</li>
+            <li>22222</li>
+            <li>22222</li>
+            <li>22222</li>
+            <li>22222</li>
+            <li>22222</li>
+            <li>22222</li>
+            <li>22222</li>
+            <li>22222</li>
+        </ul>    
+    </div>
+    <div>
+        <ul id="main">
+            <li>333333</li>
+            <li>333333</li>
+            <li>333333</li>
+            <li>333333</li>
+            <li>333333</li>
+            <li>333333</li>
+        </ul>
+    </div>
+</body>
+</html>
