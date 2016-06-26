@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+	<style type="text/css">
+		.modal{
+			background:#ffffff;
+			display:none;
+		}
+		.modal .modal-content{
+			overflow:auto;
+			margin-bottom:20px;
+		}
+		.modal .modal-footer{
+			border-top:1px solid #eee;
+			height:50px;
+
+
+		}
+		.btn {
+			padding:3px 5px 3px 5px;
+			border:1px solid #666;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-2.2.4.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var modal = (function(){
+				var bd = $('<div id="modal-overlay"></div>');
+				var dh = $(document).height();
+				var dw = $(document).width();
+				bd.css({
+					'position':'absolute',
+					'top':'0px',
+					'left':'0px',
+					//'height':dh,
+					'height':'100%',
+					'backgroundColor':'#000000',
+					'opacity':0.6,
+					'zIndex':1000,
+					'width':'100%'});
+				var overlay = $('#modal-overlay');
+				var myModal = $('#myModal');
+				
+				myModal.css({
+					'position':'absolute',
+					'zIndex':1001,
+				});
+				 function mdata(){
+					var wh = $(window).innerHeight();
+					var ww = $(window).innerWidth();
+					var mTop = (wh - myModal.height())/2;
+					if(mTop <= 0){
+						mTop = 0;
+					}
+					var mLeft = (ww - myModal.width())/2;
+					return {
+						'mTop':mTop,
+						'mLeft':mLeft
+					}
+				}
+				function resize(){
+					var data = mdata();
+					myModal.css({
+						'top':data.mTop,
+						'left':data.mLeft
+					});
+				}
+				var show = function (){
+					if(overlay.length <= 0){
+						resize();
+						$('body').eq(0).css({'overflow':'hidden'}).append(bd);
+						myModal.show();
+					}
+				}
+				var hide = function (){
+					$('#modal-overlay').remove();
+					$('body').css({'overflow':'auto'});
+					myModal.hide();
+				}
+				$(window).resize(function(){
+					resize();
+				});
+				return {
+					'show':show,
+					'hide':hide,
+				};
+			})();
+			$('#dian').click(function(){
+				modal.show();
+			});
+			$('.btn').click(function(){
+				modal.hide();
+			});
+		})
+	</script>
+</head>
+<body>
+	<div style="height:1200px;">
+		<button id="dian" >点击</button>
+	</div>
+	<div id="myModal" style="border:1px solid #ddd;width:600px;" class='modal'>
+		<div class="modal-header">
+			<h1 class="modal-title">标题</h1>
+		</div>
+		<div class="modal-content" >
+			在这里添加一些文本sdfsf
+		</div>
+		<div class="modal-footer" >
+			<div style="float:right;margin-top:10px;margin-right:20px;">
+				<a href='#' class="btn">确定</a>
+				<a href='#' class="btn">取消</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
